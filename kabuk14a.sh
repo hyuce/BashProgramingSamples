@@ -22,6 +22,5 @@ done
 
 echo ortalama / 4 | bc
 
-
 #echo "cevap : ${dizi_Dosya[$deger-1]}"
 
