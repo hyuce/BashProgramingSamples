@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for degisken1 in deger1 deger2 .... degerN
+for sayi in {1..10} {20..30}
     do
-	komutlar
+	echo $sayi
     done
