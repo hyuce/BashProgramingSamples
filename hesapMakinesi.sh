@@ -7,7 +7,7 @@ echo -n "Birinci sayıyı giriniz: "
 read n1
 echo -n "İkinci sayıyı giriniz: "
 read n2
-while [ $i = "y" ]; do
+while [ $i = "e" ]; do
 	echo "1.Toplama"
 	echo "2.Çıkarma"
 	echo "3.Çarpma"
@@ -35,7 +35,7 @@ while [ $i = "y" ]; do
 	esac
 	echo "Devam etmek istermisiniz (e/h)) ?"
 	read i
-	if [ $i != "h" ]; then
+	if [ $i != "e" ]; then
 		exit
 	fi
 done
