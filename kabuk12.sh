@@ -2,5 +2,5 @@
 
 for dosya in *
     do
-	echo  $dosya
+	echo "Dosya Adi :"   $dosya
     done
