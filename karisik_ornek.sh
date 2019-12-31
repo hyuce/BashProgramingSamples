@@ -1,6 +1,5 @@
 #!/bin/bash
 hyuce_seviye=1
-ibrahimvarola_seviye=0
 
 user_root() {
    echo "1- Yeni kullanıcı tanımlama"
@@ -17,11 +16,27 @@ user_root() {
 	2)
           echo -n "Seviyesini değiştirmek istediğiniz kullanıcının kullanıcı adını giriniz: "
 	  read kullanici_adi
-	  if [ $seviye_kullanici == ibrahimvarola ]
+	  if [ $kullanici_adi == ibrahimvarola ]
 	    then
 		echo -n "Lütfen kullanıcı seviyesini giriniz(0-1): "
 		read kullanici_seviye
-	  fi #BU KISIMDA KALDIM DEVAM EDECEGIM!
+		if [ $kullanici_seviye -gt 1 ]
+		  then
+		     echo "Yanlış seviye girdiniz."
+		else
+		  ibrahimvarola_seviye=kullanici_seviye
+		fi
+	else 
+	    echo "Yanlış kullanıcı adı girdiniz."
+	  fi 
+	;;
+	3)
+	  echo "Programlama aşamasında!"
+	;;
+	*)
+	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
+	;;
+   esac
 }
 user_user() {
    echo "1- Kullanıcı bilgilerini görüntüle"
@@ -55,6 +70,7 @@ elif [ $kad == hyuce -a $sifre == 9876 ]
   then
       clear
       echo "Hoşgeldiniz Hüseyin hocam! Lütfen işlemlerinizi seçiniz: "
+      user_root
 else
       echo "Lütfen giriş işlemlerinizi kontrol ediniz veya sistem yöneticinizden kayıdınızı yapmasını isteyiniz."
 fi
