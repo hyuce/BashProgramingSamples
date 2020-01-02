@@ -63,6 +63,9 @@ user_root() {
 	2)
 		echo "Yapım Aşamasında!!"
 	  ;;
+	3)
+		echo "Yapım Aşamasında!"
+	  ;;
 	*)
 	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
 	;;
@@ -75,3 +78,5 @@ user_user() {
    echo -n "İşleminizi giriniz: "
    read islem
 }
+
+user_root #YAPIM ASAMASINDA OLDUGU ICIN FONKSIYONU DIREK CAGIRIYORUM
