@@ -1,7 +1,40 @@
-#!/bin/bash
-hyuce_seviye=1
+#İbrahim Varola tarafından oluşturulmuştur ve düzenlenmiştir.
 
-user_root() {
+#!/bin/bash
+
+kullanicilar=(hyuce ibrahimvarola)
+kullanici_sifre=(1234 abcd)
+kullanici_seviye=(1 1)
+
+kullanici_adi_tanimlama() {
+	echo -n "Tanımlayacağınız kullanıcının adını giriniz: "
+	read yeni_kullanici
+	kullanicilar=("${kullanicilar[@]}" "$yeni_kullanici")
+}
+
+kullanici_sifresi_belirleme() {
+	echo -n "Tanımlamış olduğunuz $yeni_kullanici kullanıcısının şifresini belirleyiniz: "
+	read yeni_kullanici_sifre
+	kullanici_sifre=("${kullanici_sifre[@]}" "$yeni_kullanici_sifre")
+}
+
+kullanici_seviyesi_belirleme() {
+while [ 1 ]
+do
+echo -n "Tanımlamış olduğunuz $yeni_kullanici kullanıcısının seviyesini belirleyiniz(0 ya da 1): "
+read yeni_kullanici_seviye
+if [ $yeni_kullanici_seviye -le 1 ]
+	then
+		kullanici_seviye=("${kullanici_sifre[@]}" "$yeni_kullanici_seviye")
+		echo "Kullanıcı $yeni_kullanici sisteme başarıyla tanımlandı!"
+		break
+else
+	echo "Yanlış değer girdiniz, lütfen tekrar deneyiniz."
+fi
+done
+}
+
+#user_root() {
    echo "1- Yeni kullanıcı tanımlama"
    echo "2- Kullanıcı seviyesi belirleme"
    echo "3- Kullanıcı şifresi değiştirme-belirleme"
@@ -11,66 +44,27 @@ user_root() {
 
    case $islem in
 	1)
-          echo "Hala programlanma aşamasında :( "
-	  ;;
+		kullanici_adi_tanimlama
+	
+		kullanici_sifresi_belirleme
+	
+		kullanici_seviyesi_belirleme
+
+		kullanici_sayisi=${#kullanicilar[*]} #kullanicilar dizisinde bulunan elemanların sayisini kullanici_sayisi degiskenine atadı
+		degisken1=0
+		
+		while [ $degisken1 -lt $kullanici_sayisi ]
+		do
+		sleep 1
+    	echo "kad = ${kullanicilar[$degisken1]} ksif= ${kullanici_sifre[$degisken1]}"
+    	degisken1=$((degisken1+1))
+		done
+;;
 	2)
-          echo -n "Seviyesini değiştirmek istediğiniz kullanıcının kullanıcı adını giriniz: "
-	  read kullanici_adi
-	  if [ $kullanici_adi == ibrahimvarola ]
-	    then
-		echo -n "Lütfen kullanıcı seviyesini giriniz(0-1): "
-		read kullanici_seviye
-		if [ $kullanici_seviye -gt 1 ]
-		  then
-		     echo "Yanlış seviye girdiniz."
-		else
-		  ibrahimvarola_seviye=kullanici_seviye
-		fi
-	else 
-	    echo "Yanlış kullanıcı adı girdiniz."
-	  fi 
-	;;
-	3)
-	  echo "Programlama aşamasında!"
-	;;
+		clear
+	  ;;
 	*)
 	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
 	;;
    esac
-}
-user_user() {
-   echo "1- Kullanıcı bilgilerini görüntüle"
-
-   echo -n "İşleminizi giriniz: "
-   read islem
-}
-
-echo "Kullanıcı adınızı Giriniz: "
-read kad
-
-echo "Şifrenizi Giriniz: "
-read -s sifre
-
-if  [ $kad == ibrahimvarola -a $sifre == 1234 ]
-  then
-      clear
-      echo "Hoşgeldiniz İbrahim Bey! Lütfen işlemlerinizi seçiniz: "
-      if [ $ibrahimvarola_seviye == 1 ]
-        then
-            user_root
-        else 
-            user_user
-       fi
-
-
-
-
-
-elif [ $kad == hyuce -a $sifre == 9876 ]
-  then
-      clear
-      echo "Hoşgeldiniz Hüseyin hocam! Lütfen işlemlerinizi seçiniz: "
-      user_root
-else
-      echo "Lütfen giriş işlemlerinizi kontrol ediniz veya sistem yöneticinizden kayıdınızı yapmasını isteyiniz."
-fi
+#}
