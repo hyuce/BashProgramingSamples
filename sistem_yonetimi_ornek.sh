@@ -34,7 +34,7 @@ fi
 done
 }
 
-#user_root() {
+user_root() {
    echo "1- Yeni kullanıcı tanımlama"
    echo "2- Kullanıcı seviyesi belirleme"
    echo "3- Kullanıcı şifresi değiştirme-belirleme"
@@ -61,10 +61,17 @@ done
 		done
 ;;
 	2)
-		clear
+		echo "Yapım Aşamasında!!"
 	  ;;
 	*)
 	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
 	;;
    esac
-#}
+}
+
+user_user() {
+   echo "1- Kullanıcı bilgilerini görüntüle"
+
+   echo -n "İşleminizi giriniz: "
+   read islem
+}
