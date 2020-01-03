@@ -1,11 +1,13 @@
 #İbrahim Varola tarafından oluşturulmuştur ve düzenlenmiştir.
 
-#!/bin/bash
+#!/usr/bin/env bash
+
+clear
 
 kullanicilar=(hyuce ibrahimvarola)
 kullanici_sifre=(1234 abcd)
 kullanici_seviye=(1 1)
-
+degisken1=0
 kullanici_adi_tanimlama() {
 	echo -n "Tanımlayacağınız kullanıcının adını giriniz: "
 	read yeni_kullanici
@@ -35,15 +37,22 @@ done
 }
 
 user_root() {
+   while [ 1 ] 
+   do
+   echo "-----------------------------------------------------------------------"
+
    echo "1- Yeni kullanıcı tanımlama"
    echo "2- Kullanıcı seviyesi belirleme"
    echo "3- Kullanıcı şifresi değiştirme-belirleme"
+   echo "4- Çıkış"
 
    echo -n "İşleminizi giriniz: "
    read islem
 
    case $islem in
 	1)
+		echo "-----------------------------------------------------------------------"
+
 		kullanici_adi_tanimlama
 	
 		kullanici_sifresi_belirleme
@@ -51,7 +60,7 @@ user_root() {
 		kullanici_seviyesi_belirleme
 
 		kullanici_sayisi=${#kullanicilar[*]} #kullanicilar dizisinde bulunan elemanların sayisini kullanici_sayisi degiskenine atadı
-		degisken1=0
+		
 		
 		while [ $degisken1 -lt $kullanici_sayisi ]
 		do
@@ -59,19 +68,31 @@ user_root() {
     	echo "kad = ${kullanicilar[$degisken1]} ksif= ${kullanici_sifre[$degisken1]}"
     	degisken1=$((degisken1+1))
 		done
-;;
+	   ;;
 	2)
-		echo "Yapım Aşamasında!!"
+		echo "-----------------------------------------------------------------------"
+		kullanici_sayisi=${#kullanicilar[*]}
+		while [ $degisken1 -lt $kullanici_sayisi ]
+		do
+    	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
+    	degisken1=$((degisken1+1))
+		done
+		echo -n "Lütfen değişiklik yapmak istediğiniz kullanıcıyı seçiniz: "
+		read secenek
 	  ;;
 	3)
 		echo "Yapım Aşamasında!"
+	  ;;
+	4)
+		exit
 	  ;;
 	*)
 	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
 	;;
    esac
-}
+done
 
+}
 user_user() {
    echo "1- Kullanıcı bilgilerini görüntüle"
 
