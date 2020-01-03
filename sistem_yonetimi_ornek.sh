@@ -20,14 +20,14 @@ kullanici_sifresi_belirleme() {
 	kullanici_sifre=("${kullanici_sifre[@]}" "$yeni_kullanici_sifre")
 }
 
-kullanici_seviyesi_belirleme() {
+yeni_kullanici_seviyesi_belirleme() {
 while [ 1 ]
 do
 echo -n "Tanımlamış olduğunuz $yeni_kullanici kullanıcısının seviyesini belirleyiniz(0 ya da 1): "
 read yeni_kullanici_seviye
 if [ $yeni_kullanici_seviye -le 1 ]
 	then
-		kullanici_seviye=("${kullanici_sifre[@]}" "$yeni_kullanici_seviye")
+		kullanici_seviye=("${kullanici_seviye[@]}" "$yeni_kullanici_seviye")
 		echo "Kullanıcı $yeni_kullanici sisteme başarıyla tanımlandı!"
 		break
 else
@@ -35,6 +35,23 @@ else
 fi
 done
 }
+
+kullanici_seviyesi_belirleme() {
+while [ 1 ]
+do
+echo -n "Seçmiş olduğunuz ${kullanicilar[$((secenek-1))]} kullanıcısının seviyesini belirleyiniz(0 ya da 1): "
+read seviye
+if [ $seviye -le 1 ]
+	then
+		kullanici_seviye=("${kullanici_seviye[$((secenek))]}" "$seviye")
+		echo "Kullanıcı ${kullanicilar[$((secenek-1))]}' nın seviyesi başarıyla değiştirildi!"
+		break
+else
+	echo "Yanlış değer girdiniz, lütfen tekrar deneyiniz."
+fi
+done
+}
+
 
 user_root() {
    while [ 1 ] 
@@ -57,28 +74,35 @@ user_root() {
 	
 		kullanici_sifresi_belirleme
 	
-		kullanici_seviyesi_belirleme
+		yeni_kullanici_seviyesi_belirleme
 
-		kullanici_sayisi=${#kullanicilar[*]} #kullanicilar dizisinde bulunan elemanların sayisini kullanici_sayisi degiskenine atadı
 		
-		
-		while [ $degisken1 -lt $kullanici_sayisi ]
-		do
-		sleep 1
-    	echo "kad = ${kullanicilar[$degisken1]} ksif= ${kullanici_sifre[$degisken1]}"
-    	degisken1=$((degisken1+1))
-		done
 	   ;;
 	2)
+		clear
+		while [ 1 ]
+		do
 		echo "-----------------------------------------------------------------------"
+		degisken1=0
 		kullanici_sayisi=${#kullanicilar[*]}
 		while [ $degisken1 -lt $kullanici_sayisi ]
 		do
     	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
     	degisken1=$((degisken1+1))
 		done
-		echo -n "Lütfen değişiklik yapmak istediğiniz kullanıcıyı seçiniz: "
+
+		echo -n "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: "
 		read secenek
+
+		if [ $secenek -gt $((degisken1)) ]
+			then
+				echo "Yanlış seçenek seçtiniz, lütfen tekrar deneyiniz."
+		else
+			kullanici_seviyesi_belirleme
+			break
+		fi
+		done
+		echo
 	  ;;
 	3)
 		echo "Yapım Aşamasında!"
@@ -86,6 +110,17 @@ user_root() {
 	4)
 		exit
 	  ;;
+	5)
+		degisken1=0
+		kullanici_sayisi=${#kullanicilar[*]} #kullanicilar dizisinde bulunan elemanların sayisini kullanici_sayisi degiskenine atadı
+		
+		
+		while [ $degisken1 -lt $kullanici_sayisi ]
+		do
+    	echo "kad = ${kullanicilar[$degisken1]} ksif= ${kullanici_sifre[$degisken1]} ksev= ${kullanici_seviye[$degisken1]}"
+    	degisken1=$((degisken1+1))
+		done
+		;;
 	*)
 	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
 	;;
