@@ -8,6 +8,7 @@ kullanicilar=(hyuce ibrahimvarola)
 kullanici_sifre=(1234 abcd)
 kullanici_seviye=(1 1)
 degisken1=0
+secenek=0
 kullanici_adi_tanimlama() {
 	echo -n "Tanımlayacağınız kullanıcının adını giriniz: "
 	read yeni_kullanici
@@ -39,16 +40,7 @@ done
 kullanici_seviyesi_belirleme() {
 while [ 1 ]
 do
-echo -n "Seçmiş olduğunuz ${kullanicilar[$((secenek-1))]} kullanıcısının seviyesini belirleyiniz(0 ya da 1): "
-read seviye
-if [ $seviye -le 1 ]
-	then
-		kullanici_seviye=("${kullanici_seviye[$((secenek))]}" "$seviye")
-		echo "Kullanıcı ${kullanicilar[$((secenek-1))]}' nın seviyesi başarıyla değiştirildi!"
-		break
-else
-	echo "Yanlış değer girdiniz, lütfen tekrar deneyiniz."
-fi
+read -p "Seçmiş olduğunuz ${kullanicilar[$secenek1]} kullanıcısının seviyesini giriniz(1 - 0): "
 done
 }
 
@@ -85,11 +77,13 @@ user_root() {
 		echo "-----------------------------------------------------------------------"
 		degisken1=0
 		kullanici_sayisi=${#kullanicilar[*]}
+		
 		while [ $degisken1 -lt $kullanici_sayisi ]
 		do
     	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
     	degisken1=$((degisken1+1))
 		done
+		
 
 		echo -n "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: "
 		read secenek
