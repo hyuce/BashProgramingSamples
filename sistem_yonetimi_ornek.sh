@@ -40,7 +40,15 @@ done
 kullanici_seviyesi_belirleme() {
 while [ 1 ]
 do
-read -p "Seçmiş olduğunuz ${kullanicilar[$secenek1]} kullanıcısının seviyesini giriniz(1 - 0): "
+read -p "Seçmiş olduğunuz ${kullanicilar[$((secenek-1))]} kullanıcısının seviyesini giriniz(1 - 0): " kull_sev
+if [ $kull_sev -le 1 ]
+	then
+		kullanici_seviye[$((secenek-1))]=$kull_sev
+		echo "işlem tamam!!"
+		break
+else
+	echo "Yanlış değer girdiniz, lütfen tekrar deneyiniz."
+fi
 done
 }
 
@@ -85,10 +93,10 @@ user_root() {
 		done
 		
 
-		echo -n "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: "
-		read secenek
+		#echo -n "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: "
+		read -p "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: " secenek
 
-		if [ $secenek -gt $((degisken1)) ]
+		if [ $secenek -gt $((degisken1)) -o $secenek -eq 0 ]
 			then
 				echo "Yanlış seçenek seçtiniz, lütfen tekrar deneyiniz."
 		else
@@ -108,7 +116,7 @@ user_root() {
 		degisken1=0
 		kullanici_sayisi=${#kullanicilar[*]} #kullanicilar dizisinde bulunan elemanların sayisini kullanici_sayisi degiskenine atadı
 		
-		
+		echo
 		while [ $degisken1 -lt $kullanici_sayisi ]
 		do
     	echo "kad = ${kullanicilar[$degisken1]} ksif= ${kullanici_sifre[$degisken1]} ksev= ${kullanici_seviye[$degisken1]}"
