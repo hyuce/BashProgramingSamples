@@ -10,7 +10,7 @@ for dosya in *
     dizi_Degisken=("${dizi_Degisken[@]}" "$dosya")
 
     done
-while [ dosya_sayisi -gt 0 ]
+while [ $dosya_sayisi -gt 0 ]
     do
     echo ${dizi_Degisken[dosya_sayisi]}
     dosya_sayisi=$((dosya_sayisi-1))
