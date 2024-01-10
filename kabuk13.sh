@@ -7,7 +7,7 @@ dizi_Degisken=(Ocak Subat Mart Nisan Mayis Haziran Temmuz Agustos Eylul Ekim Kas
 echo -n "Bir Ay Degeri Giriniz :"
 
 read deger
-if [ $deger -ge 13 ]
+if [ $deger -le 0 -o $deger -ge 13 ]
 then
 echo "YANLIŞ DEĞER!"
 
