@@ -3,11 +3,11 @@ clear
 sum=0
 i="e"
 
-echo -n "Birinci sayıyı giriniz: " 
-read n1
-echo -n "İkinci sayıyı giriniz: "
-read n2
 while [ $i = "e" ]; do
+	echo -n "Birinci sayıyı giriniz: " 
+	read n1
+	echo -n "İkinci sayıyı giriniz: "
+	read n2
 	echo "1.Toplama"
 	echo "2.Çıkarma"
 	echo "3.Çarpma"
@@ -28,8 +28,12 @@ while [ $i = "e" ]; do
 		echo "Çarpma = "$sum
 		;;
 	4)
-		sum=$(expr $n1 / $n2)
-		echo "Bölme = "$sum
+		if [ $n2 -eq 0 ]; then
+			echo "Bölen için 0'dan başka bir sayı giriniz."
+   		else
+     			sum=$(expr $n1 / $n2)
+			echo "Bölme = "$sum
+   		fi
 		;;
 	*) echo "Yanlış Seçim" ;;
 	esac
