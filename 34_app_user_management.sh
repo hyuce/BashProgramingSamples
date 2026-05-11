@@ -58,104 +58,139 @@ fi
 done
 }
 
-user_root() {
-   while [ 1 ] 
+user_user() {
+   while true 
    do
    echo "-----------------------------------------------------------------------"
-
-   echo "1- Yeni kullanıcı tanımlama"
-   echo "2- Kullanıcı seviyesi belirleme"
-   echo "3- Kullanıcı şifresi değiştirme-belirleme"
-   echo "4- Çıkış"
-
+   echo "1- Şifremi Değiştir"
+   echo "2- Bilgilerimi Göster"
+   echo "3- Çıkış"
    echo -n "İşleminizi giriniz: "
    read islem
 
-   case $islem in
+   case "$islem" in
 	1)
-		echo "-----------------------------------------------------------------------"
-
-		kullanici_adi_tanimlama
-	
-		kullanici_sifresi_belirleme
-	
-		yeni_kullanici_seviyesi_belirleme
-
-		
+		secenek=0
+		# Mevcut kullanıcıyı bul
+		for i in "${!kullanicilar[@]}"; do
+			if [[ "${kullanicilar[$i]}" == "$kad" ]]; then
+				secenek=$((i+1))
+				break
+			fi
+		done
+		if [[ "$secenek" -gt 0 ]]; then
+			kullanici_sifresi_belirleme
+		fi
 	   ;;
 	2)
-		clear
-		while [ 1 ]
-		do
-		echo "-----------------------------------------------------------------------"
-		degisken1=0
-		kullanici_sayisi=${#kullanicilar[*]}
-		
-		while [ $degisken1 -lt $kullanici_sayisi ]
-		do
-    	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
-    	degisken1=$((degisken1+1))
+		for i in "${!kullanicilar[@]}"; do
+			if [[ "${kullanicilar[$i]}" == "$kad" ]]; then
+				echo "Kullanıcı Adı: ${kullanicilar[$i]}"
+				echo "Şifre: ${kullanici_sifre[$i]}"
+				echo "Seviye: ${kullanici_seviye[$i]}"
+				break
+			fi
 		done
-		
-		read -p "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: " secenek
-
-		if [ $secenek -gt $((degisken1)) -o $secenek -eq 0 ]
-			then
-				echo "Yanlış seçenek seçtiniz, lütfen tekrar deneyiniz."
-		else
-			kullanici_seviyesi_belirleme
-			break
-		fi
-		done
-		echo
 	  ;;
 	3)
-		clear
-		while [ 1 ]
-		do
-		echo "-----------------------------------------------------------------------"
-		degisken1=0
-		kullanici_sayisi=${#kullanicilar[*]}
-		
-		while [ $degisken1 -lt $kullanici_sayisi ]
-		do
-    	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
-    	degisken1=$((degisken1+1))
-		done
-		
-
-		read -p "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: " secenek
-
-		if [ $secenek -gt $((degisken1)) -o $secenek -eq 0 ]
-			then
-				echo "Yanlış seçenek seçtiniz, lütfen tekrar deneyiniz."
-		else
-			kullanici_sifresi_belirleme
-			break
-		fi
-		done
-		echo
-	  ;;
-	4)
 		exit
 	  ;;
-	5)
-		degisken1=0
-		kullanici_sayisi=${#kullanicilar[*]} #kullanicilar dizisinde bulunan elemanların sayisini kullanici_sayisi degiskenine atadı
-		
-		echo
-		while [ $degisken1 -lt $kullanici_sayisi ]
-		do
-    	echo "kad = ${kullanicilar[$degisken1]} ksif= ${kullanici_sifre[$degisken1]} ksev= ${kullanici_seviye[$degisken1]}"
-    	degisken1=$((degisken1+1))
-		done
-		;;
 	*)
 	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
 	;;
    esac
 done
 }
+
+user_root() {
+   while true 
+   do
+   echo "-----------------------------------------------------------------------"
+   echo "YÖNETİCİ MENÜSÜ"
+   echo "1- Yeni kullanıcı tanımlama"
+   echo "2- Kullanıcı seviyesi belirleme"
+   echo "3- Kullanıcı şifresi değiştirme-belirleme"
+   echo "4- Sistemdeki Tüm Kullanıcıları Listele"
+   echo "5- Çıkış"
+
+   echo -n "İşleminizi giriniz: "
+   read islem
+
+   case "$islem" in
+	1)
+		echo "-----------------------------------------------------------------------"
+		kullanici_adi_tanimlama
+		yeni_kullanici_sifresi_belirleme
+		yeni_kullanici_seviyesi_belirleme
+	   ;;
+	2)
+		clear
+		while true
+		do
+		echo "-----------------------------------------------------------------------"
+		degisken1=0
+		kullanici_sayisi=${#kullanicilar[*]}
+		
+		while [ "$degisken1" -lt "$kullanici_sayisi" ]
+		do
+    	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
+    	degisken1=$((degisken1+1))
+		done
+		
+		read -p "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: " secenek
+
+		if [[ "$secenek" -gt "$degisken1" || "$secenek" -le 0 ]]; then
+				echo "Yanlış seçenek seçtiniz, lütfen tekrar deneyiniz."
+		else
+			kullanici_seviyesi_belirleme
+			break
+		fi
+		done
+	  ;;
+	3)
+		clear
+		while true
+		do
+		echo "-----------------------------------------------------------------------"
+		degisken1=0
+		kullanici_sayisi=${#kullanicilar[*]}
+		
+		while [ "$degisken1" -lt "$kullanici_sayisi" ]
+		do
+    	echo "$((degisken1+1))- ${kullanicilar[$degisken1]}"
+    	degisken1=$((degisken1+1))
+		done
+		
+		read -p "Lütfen değişiklik yapmak istediğiniz kullanıcının sahip olduğu numarayı seçiniz: " secenek
+
+		if [[ "$secenek" -gt "$degisken1" || "$secenek" -le 0 ]]; then
+				echo "Yanlış seçenek seçtiniz, lütfen tekrar deneyiniz."
+		else
+			kullanici_sifresi_belirleme
+			break
+		fi
+		done
+	  ;;
+	4)
+		degisken1=0
+		kullanici_sayisi=${#kullanicilar[*]}
+		echo "--- SİSTEMDEKİ KULLANICILAR ---"
+		while [ "$degisken1" -lt "$kullanici_sayisi" ]
+		do
+    	echo "KAD = ${kullanicilar[$degisken1]} | SİFRE = ${kullanici_sifre[$degisken1]} | SEVİYE = ${kullanici_seviye[$degisken1]}"
+    	degisken1=$((degisken1+1))
+		done
+		;;
+	5)
+		exit
+	  ;;
+	*)
+	  echo "Yanlış seçenek numarası girdiniz, tekrar deneyiniz."
+	;;
+   esac
+done
+}
+
 clear
 echo "-----------------------------------------------------------------------"
 echo "Kullanıcı adınızı Giriniz: "
@@ -163,27 +198,23 @@ read kad
 echo "-----------------------------------------------------------------------"
 echo "Şifrenizi Giriniz: "
 read -s sifre
+echo
 
-if  [ $kad == ibrahimvarola -a $sifre == 1234 ]
-  then
-      clear
-      echo "Hoşgeldiniz İbrahim Bey! Lütfen işlemlerinizi seçiniz: "
-      if [ $ibrahimvarola_seviye == 1 ]
-        then
+found=0
+for i in "${!kullanicilar[@]}"; do
+    if [[ "${kullanicilar[$i]}" == "$kad" && "${kullanici_sifre[$i]}" == "$sifre" ]]; then
+        found=1
+        clear
+        echo "Hoşgeldiniz ${kullanicilar[$i]}! Lütfen işlemlerinizi seçiniz: "
+        if [[ "${kullanici_seviye[$i]}" -eq 1 ]]; then
             user_root
-        else 
+        else
             user_user
-       fi
+        fi
+        break
+    fi
+done
 
-
-
-
-
-elif [ $kad == hyuce -a $sifre == 9876 ]
-  then
-      clear
-      echo "Hoşgeldiniz Hüseyin hocam! Lütfen işlemlerinizi seçiniz: "
-      user_root
-else
-      echo "Lütfen giriş işlemlerinizi kontrol ediniz veya sistem yöneticinizden kayıdınızı yapmasını isteyiniz."
+if [[ "$found" -eq 0 ]]; then
+    echo "Lütfen giriş işlemlerinizi kontrol ediniz veya sistem yöneticinizden kayıdınızı yapmasını isteyiniz."
 fi

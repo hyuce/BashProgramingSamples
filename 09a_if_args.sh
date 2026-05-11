@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if  [ $1 -lt 20  -a  $1 -gt 0 ]
+if  [[ "$1" -lt 20  &&  "$1" -gt 0 ]]
 
     then
        echo "Seçtiğiniz sayı : $1 "
