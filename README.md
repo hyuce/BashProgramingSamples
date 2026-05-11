@@ -10,8 +10,11 @@ Bu bölümde değişken tanımlama, kullanıcıdan veri alma ve temel matematiks
 - `02_expr_arithmetic.sh`: `expr` komutu ile tam sayı işlemleri.
 - `03_bc_arithmetic.sh`: `bc` komutu ile ondalıklı (hassas) işlemler.
 - `04_arguments.sh`: `$1`, `$2` gibi komut satırı argümanlarının kullanımı.
+- `04a_command_substitution.sh`: Komut çıktılarını değişkenlerde kullanma (`$( )`).
 - `05_cut_command.sh`: Metin dosyalarından (`csv` vb.) belirli alanları ayıklama.
-- `06_string_manipulation.sh`: `tr` komutu ile büyük/küçük harf dönüşümü.
+- `06_string_manipulation.sh`: `tr` komutu ile karakter dönüşümü.
+- `06a_bash_string_ops.sh`: Bash dahili metin işleme (substring, replace vb.).
+- `06b_here_doc.sh`: Çok satırlı metin blokları oluşturma (`<<EOF`).
 
 ### 2. Karar Yapıları (Conditionals)
 Programın akışını kontrol etmek için kullanılan `if` ve `case` yapıları.
@@ -21,6 +24,7 @@ Programın akışını kontrol etmek için kullanılan `if` ve `case` yapıları
 - `09a_if_args.sh`: Argümanlar üzerinden koşullu işlemler.
 - `10_case_syntax.sh`: `case` yapısı şablonu.
 - `11_case_example.sh`: Seçenekli menü uygulaması.
+- `11a_redirection_tips.sh`: Standart çıktı ve hata yönlendirmeleri (`stdout`, `stderr`).
 
 ### 3. Döngüler (Loops)
 Tekrar eden işlemler için `while` ve `for` döngüleri.
@@ -48,6 +52,7 @@ Kodun tekrar kullanılabilirliğini artıran fonksiyonlar.
 - `27_function_calculator.sh`: Fonksiyonlar ile modüler hesap makinesi.
 - `28_function_args_echo.sh`: Fonksiyonlara parametre gönderme.
 - `29_function_args_calc.sh`: Parametreli matematiksel fonksiyonlar.
+- `29a_trap_signals.sh`: Sinyal yakalama ve temizlik işlemleri (`trap`).
 
 ### 6. Kompleks Uygulamalar ve İleri Seviye Örnekler
 Öğrenilen tüm konuların bir arada kullanıldığı ve gerçek dünya senaryolarını kapsayan örnek projeler.
