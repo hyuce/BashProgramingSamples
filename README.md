@@ -49,13 +49,18 @@ Kodun tekrar kullanılabilirliğini artıran fonksiyonlar.
 - `28_function_args_echo.sh`: Fonksiyonlara parametre gönderme.
 - `29_function_args_calc.sh`: Parametreli matematiksel fonksiyonlar.
 
-### 6. Kompleks Uygulamalar
-Öğrenilen tüm konuların bir arada kullanıldığı örnek projeler.
+### 6. Kompleks Uygulamalar ve İleri Seviye Örnekler
+Öğrenilen tüm konuların bir arada kullanıldığı ve gerçek dünya senaryolarını kapsayan örnek projeler.
 - `30_app_simple_calc.sh`: İnteraktif, gelişmiş hesap makinesi.
 - `31_app_matrix_det.sh`: 2x2 matris determinantı hesaplama.
 - `32_app_ansi_colors.sh`: ANSI renk kodları ile görsel çıktı üretme.
 - `33_app_line_counter.sh`: Dosya satırlarını sayan yardımcı araç.
 - `34_app_user_management.sh`: Kullanıcı yönetimi ve seviye yetkilendirme sistemi.
+- `35_log_analyzer.sh`: Log dosyalarını analiz etme ve özet raporlama.
+- `36_backup_manager.sh`: Dosya yedekleme ve arşivleme (tar/gz).
+- `37_system_monitor.sh`: CPU, Bellek ve Disk kullanımını izleme.
+- `38_temp_cleaner.sh`: Belirli yaştaki/uzantıdaki dosyaları güvenli temizleme.
+- `39_network_checker.sh`: Ağ bağlantılarını ve servis erişilebilirliğini kontrol etme.
 
 ## Nasıl Kullanılır?
 Dosyaları çalıştırmak için önce çalıştırma izni vermeniz gerekebilir:
